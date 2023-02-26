@@ -7,8 +7,7 @@
 # playerctl should be installed.
 
 MEDIA=$(playerctl -a metadata | grep title | awk '{$1=$2=""; print $0}')
-
-echo "$MEDIA | refresh=true dropdown=false"
+echo "$MEDIA | length=30"
 # Menu for launching applications
 echo ---
 echo "Youtube | bash='/usr/lib64/firefox/firefox --class WebApp-youtube9835 --profile /home/mj/.local/share/ice/firefox/youtube9835 --no-remote https://youtube.com' terminal=false"
