@@ -4,4 +4,4 @@ Argos is gnome extension for making other simple extensions by utilizing bash sc
 ## Installation
 1. Install and enable [argos](https://github.com/p-e-w/argos) gnome extension.
 2. Create ~/.config/argos directory and place your scripts there.
-3. You may need to logoff/login.
+3. Make scripts executable.
