@@ -4,13 +4,14 @@
 # https://github.com/f5AFfMhv
 #
 # Argos script for showing media that is currently playing.
-# playerctl should be installed.
+# Requirements:
+# - playerctl
 
-MEDIA=$(playerctl -a metadata | grep title | awk '{$1=$2=""; print $0}')
-echo "$MEDIA | length=30 font=monospace"
-# Menu for launching applications
+# Show title of current media that is playing
+MEDIA=$(playerctl metadata --format '{{title}}')
+echo "$MEDIA | length=30 font=monospace dropdown=false"
+
+# Show all media sources
 echo ---
-echo "Youtube | bash='/usr/lib64/firefox/firefox --class WebApp-youtube9835 --profile /home/mj/.local/share/ice/firefox/youtube9835 --no-remote https://youtube.com' terminal=false"
-echo "Spotify | bash='flatpak run com.spotify.Client' terminal=false"
-echo "Plex | bash='flatpak run tv.plex.PlexDesktop' terminal=false"
-echo "VLC | bash='flatpak run org.videolan.VLC' terminal=false"
+MEDIA_OUTPUT=$(playerctl -a metadata --format '{{lc(status)}}: {{artist}} - {{title}}' | awk 1 ORS="\\\\n")
+echo "$MEDIA_OUTPUT | font=monospace bash='flatpak run com.spotify.Client' terminal=false"
