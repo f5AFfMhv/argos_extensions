@@ -16,9 +16,9 @@ DISK=$(df /home --output=pcent | sed -n 2p)           # Home partition usage in 
 UPTIME=$(uptime | awk '{print $3}' | sed 's/,//g')    # Uptime
 
 index=0
-icons=("system-run" "media-flash" "drive-harddisk" "document-open-recent")
+icons=("media-flash" "drive-harddisk" "document-open-recent")
 # Rotate short resource info. Use monospace font and always use consistent line width of 6 char.
-for item in $CPU $MEM $DISK $UPTIME; do
+for item in $MEM $DISK $UPTIME; do
   if [ ${#item} -lt 6 ]; then
       result="${item}▐▐▐▐▐▐"
   fi
@@ -51,6 +51,4 @@ if [ "$ARGOS_MENU_OPEN" == "true" ]; then
   T_OUTPUT=$(sensors k10temp-pci-00c3 | tail -n +2 | awk 1 ORS="\\\\n")
   echo "$T_OUTPUT | font=monospace"
 
-else
-  echo "Loading..."
 fi
